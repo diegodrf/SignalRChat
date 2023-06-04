@@ -19,5 +19,10 @@ namespace SignalRChat.Hubs
 
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
+
+        public async Task GetHistory()
+        {
+            await Clients.Caller.SendAsync("AllMessages", _database.GetAllMessages());
+        }
     }
 }
